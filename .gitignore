@@ -1,0 +1,10 @@
+# Ignore virtual environment
+env/
+venv/
+__pycache__/
+*.pyc
+*.db
+
+# Ignore SSH keys
+todo
+todo.pub
