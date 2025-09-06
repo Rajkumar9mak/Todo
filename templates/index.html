@@ -1,0 +1,57 @@
+  {% extends'base.html' %}
+  {% block body %}
+
+
+    <div class="container mt-4">
+      <h1 class="mb-3">Add Todo</h1>
+      <form action="/" method="POST">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input type="text" class="form-control" name="desc" required>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Add Todo</button>
+      </form>
+
+      <h2 class="mt-5">All Todos</h2>
+      
+          {% if allTodo|length ==0 %}
+               <div class="alert alert-info" role="alert">
+                No todos available.add some!
+               </div>
+             {% else %}
+             <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>sno</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for todo in allTodo %}
+          <tr>
+            <td>{{ todo.sno }}</td>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.desc }}</td>
+            <td>{{ todo.date_created }}</td>
+            <td>
+              <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">update</button>
+              <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</button>
+              </td>
+          </tr>
+        </tbody>
+  </table>  
+          {% endfor %}
+          {% endif %}
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
+{% endblock body %}      
